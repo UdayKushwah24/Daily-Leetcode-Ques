@@ -3,11 +3,14 @@ package DynamicProgramming;
 import java.util.Arrays;
 
 public class DistinctSubSequences_115 {
+
+    // i--> s -> Coins
+    // j --> t -> amuount
     public static int numDistinct(String s, String t, int i, int j, int[][] dp) {
-        if (j == t.length()) {
+        if (j == t.length()) {  // amount -> 0
             return 1;
         }
-        if (i == s.length()) {
+        if (i == s.length()) {  // coin -> 0 or coin empty
             return 0;
         }
         if (dp[i][j] != -1) {

@@ -16,6 +16,7 @@ public class HouseRobber {
         int not_rob = Robber(dp, nums, i + 1);
         return dp[i] = Math.max(rob, not_rob);
     }
+
     // TC : O(n)
     public static int Robber2(int[] dp, int[] nums, int l) {
         if (l < 0) {
@@ -28,22 +29,22 @@ public class HouseRobber {
         int not_rob = Robber2(dp, nums, l - 1);
         return dp[l] = Math.max(rob, not_rob);
     }
-    
+
     // TC : O(n)
     public static int RobberBU(int[] nums) {
-        if (nums.length == 1)  {
+        if (nums.length == 1) {
             return nums[0];
         }
         int[] dp = new int[nums.length];
         dp[0] = nums[0];
         dp[1] = Math.max(nums[0], nums[1]);
-        
+
         for (int i = 2; i < dp.length; i++) {
             int rob = nums[i] + dp[i - 2];
             int not_rob = dp[i - 1];
             dp[i] = Math.max(rob, not_rob);
         }
-        return dp[nums.length-1];
+        return dp[nums.length - 1];
     }
 
     public static void main(String[] args) {
