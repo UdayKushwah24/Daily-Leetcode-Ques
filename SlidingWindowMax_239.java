@@ -1,29 +1,42 @@
-package Heap;
- 
-import java.util.Collections;
-import java.util.PriorityQueue;
+package InfinityChampionsProgram.Day1;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class SlidingWindowMax_239 {
-    public static int[] maxSlidingWindow(int[] arr, int k) {
-        // PriorityQueue<Integer> pq = new PriorityQueue<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        int[] ans = new int[arr.length - k+1 ];
-        for (int i = 0; i < k; i++) {
-            pq.add(arr[i]);
+
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        Deque<Integer> deque = new ArrayDeque<Integer>();
+        int n = nums.length;
+        int res[] = new int[n - k + 1];
+        if (n == 0) {
+            return res;
         }
-        int idx = 0;
-        for (int i = k; i < arr.length; i++) {
-            
+        int index = 0;
+        while (index < k) {
+            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[index]) {
+                deque.pollLast();
+            }
+            deque.offerLast(index);
+            index++;
         }
-        
-        return ans;
+        res[0] = nums[deque.peekFirst()];
+        for (int i = 0; i < n - k + 1; i++) {
+            if (!deque.isEmpty() && deque.peekFirst() <= (i - 1)) {
+                deque.pollFirst();
+            }
+            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i + k - 1]) {
+                deque.pollLast();
+            }
+            deque.offerLast(i + k - 1);
+            res[i] = nums[deque.peekFirst()];
+        }
+        return res;
+
     }
-     public static void main(String[] args) {
-        int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
+    public static void main(String[] args) {
+        int nums[] = { 1, 3, -1, -3, 5, 3, 6, 7 };
         int k = 3;
-        int[] ans = maxSlidingWindow(nums, k);
-        for (int i = 0; i < ans.length; i++) {
-            System.out.print(ans[i] +" ");
-        }
+        System.out.println(maxSlidingWindow(nums, k));
     }
 }
