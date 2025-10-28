@@ -3,64 +3,98 @@ package DynamicProgramming;
 import java.util.Scanner;
 
 public class Knapsack_0_1 {
-   /*  public static void main(String[] args) {
-      Scanner sc = new Scanner(System.in);
-      int n = sc.nextInt();
-      
-      int[] weight = new int[n];
-      for (int i = 0; i < weight.length; i++) {
-          weight[i] = sc.nextInt();
-      }
-   
-      int[] value = new int[n];
-      for (int i = 0; i < value.length; i++) {
-          value[i] = sc.nextInt();
-      }
-   
-      int capacity = sc.nextInt();
-   
-      System.out.println(Knapsack(weight, value,capacity,0));
-   } */
-   
-   
-   /* public static void main(String[] args) {
-     int[] weight = { 1, 2, 3, 2, 2 };
-     int[] value = { 8, 4, 0, 5, 3 };
-     int cap = 4;
-   
-     System.out.println(Knapsack(weight, value, cap, 0));
-   }
-   
-   public static int Knapsack(int[] weight, int[] value, int cap, int i) {
-      if (cap == 0 || i == weight.length) {
-          return 0;
-      }
-      int inc = 0, exc = 0;
-      if (cap >= weight[i]) {
-          inc = weight[i] + Knapsack(weight, value, cap - weight[i], i + 1);
-      }
-      exc = Knapsack(weight, value, cap, i + 1);
-      return Math.max(inc, exc);
-   } */
-   
-   
+    
+    /*
+     * public static void main(String[] args) {
+     * int[] weight = { 1, 2, 3, 2, 2 }; // weights
+     * int[] values = { 8, 4, 0, 5, 3 };
+     * int capacity = 4;
+     * System.out.println(Knapsack(weight, values, capacity, 0));
+     * 
+     * }
+     * 
+     * private static int Knapsack(int[] weight, int[] values, int capacity, int i)
+     * {
+     * if (i >= weight.length) {
+     * return 0;
+     * }
+     * 
+     * if (capacity == 0) {
+     * return 0;
+     * }
+     * 
+     * int inc = 0, exc = 0;
+     * if (capacity >= weight[i]) {
+     * inc = values[i] + Knapsack(weight, values, capacity - weight[i], i + 1);
+     * }
+     * exc = Knapsack(weight, values, capacity, i + 1);
+     * return Math.max(inc, exc);
+     * }
+     */
+
+
+
+
+    /*
+     * public static void main(String[] args) {
+     * int[] weight = { 1, 2, 3, 2, 2 }; // weights
+     * int[] values = { 8, 4, 0, 5, 3 };
+     * int capacity = 4;
+     * int[][] dp = new int[capacity + 1][weight.length + 1];
+     * // for (int a[] : dp) {
+     * // Arrays.fill(a, -1);
+     * // }
+     * // for (int i = 0; i < dp.length; i++) {
+     * // dp[0][i] = 0;
+     * // }
+     * System.out.println(Knapsack(dp,weight, values, capacity, 0));
+     * 
+     * }
+     * 
+     * private static int Knapsack(int[][] dp ,int[] weight, int[] values, int
+     * capacity, int i) {
+     * if (i >= weight.length) {
+     * return 0;
+     * }
+     * 
+     * if (capacity == 0) {
+     * return 0;
+     * }
+     * 
+     * if (dp[capacity][i] != 0) {
+     * return dp[capacity][i];
+     * }
+     * int inc = 0, exc = 0;
+     * if (capacity >= weight[i]) {
+     * inc = values[i] + Knapsack(dp, weight, values, capacity - weight[i], i + 1);
+     * }
+     * exc = Knapsack(dp, weight, values, capacity, i + 1);
+     * return dp[capacity][i] = Math.max(inc, exc);
+     * }
+     */
+
+     
     public static void main(String[] args) {
-        int[] weight = { 1, 2, 3, 2, 2 };
-        int[] value = { 8, 4, 0, 5, 3 };
-        int cap = 4;
-        int dp[] = 
-        System.out.println(Knapsack(weight, value, cap, 0));
+        int[] weight = { 1, 2, 3, 2, 2 }; // weights
+        int[] values = { 8, 4, 0, 5, 3 };
+        int capacity = 4;
+
+        System.out.println(Knapsack(weight, values, capacity));
+
     }
 
-    public static int Knapsack(int[] weight, int[] value, int cap, int i) {
-        if (cap == 0 || i == weight.length) {
-            return 0;
+    private static int Knapsack(int[] weight, int[] values, int capacity) {
+        int[][] dp = new int[capacity + 1][weight.length + 1];
+        for (int cap = 1; cap < dp.length; cap++) {
+            int inc = 0, exc = 0;
+            for (int i = 1; i < dp[0].length; i++) {
+                if (cap >= weight[i - 1]) {
+                    inc = values[i - 1] + dp[cap - weight[i - 1]][i - 1];
+                }
+                exc = dp[cap][i - 1];
+                dp[cap][i] = Math.max(inc, exc);
+            }
         }
-        int inc = 0, exc = 0;
-        if (cap >= weight[i]) {
-            inc = weight[i] + Knapsack(weight, value, cap - weight[i], i + 1);
-        }
-        exc = Knapsack(weight, value, cap, i + 1);
-        return Math.max(inc, exc);
+        return dp[dp.length - 1][dp[0].length - 1];
     }
 }

@@ -1,29 +1,29 @@
 package DynamicProgramming;
-
-import java.util.*;
-
+ 
+ 
 public class pract {
-
     public static void main(String[] args) {
-        int[] coin = {1, 2, 5};
-        int amount = 5;
-        System.out.println(coinChange(coin, amount, 0));
+        int[][] grid = { { 2, 1, 3 }, { 6, 5, 4 }, { 7, 8, 9 } };
+        int ans = Integer.MAX_VALUE;
+        for (int i = 0; i < grid[0].length; i++) {
+            ans = Math.min(minPathSum(grid, 0, i), ans);
+
+            System.out.println(ans);
+        }
+        System.out.println(ans);
     }
-
-    private static int coinChange(int coin[], int amount, int i ) {
-        if (i >= coin.length) {
-            return 0;
+ 
+    public static int minPathSum(int[][] arr, int i, int j) {
+        
+        if ( j <0 || j >= arr[0].length) {
+            return Integer.MAX_VALUE;
         }
-
-        if (amount == 0) {
-            return 1;
+        if (i == arr.length - 1 ) {
+            return arr[i][j];
         }
-        int inc = 0, exc = 0;
-        if (amount >= coin[i]) {
-            inc = coinChange(coin, amount - coin[i], i);
-        }
-        exc = coinChange(coin, amount, i + 1);
-        return  (inc + exc);
+        int ld = minPathSum(arr, i + 1, j - 1);
+        int rd = minPathSum(arr, i + 1, j + 1);
+        int b = minPathSum(arr, i + 1, j );
+        return arr[i][j] + Math.min(b, Math.min(ld, rd));
     }
 }
- 

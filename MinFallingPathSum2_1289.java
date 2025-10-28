@@ -21,6 +21,27 @@ public class MinFallingPathSum2_1289 {
     }
 
     private static int PathSum(int[][] matrix, int cr, int cc, int[][] dp) {
+
+        if (cr == matrix.length - 1) {
+            return matrix[cr][cc];
+        }
+
+        if (dp[cr][cc] != -66666) {
+            return dp[cr][cc];
+        }
+        int ans = Integer.MAX_VALUE;
+        for (int i = 0; i < matrix[0].length; i++) {
+            if (i == cc) {
+                continue;
+            }
+            ans = PathSum(matrix, cr + 1, i, dp);
+
+        }
+
+        return dp[cr][cc] = ans;
+    }
+
+   /*  private static int PathSum(int[][] matrix, int cr, int cc, int[][] dp) {
         
         if (cr == matrix.length - 1) {
             return matrix[cr][cc];
@@ -39,5 +60,5 @@ public class MinFallingPathSum2_1289 {
         }
         
         return dp[cr][cc] = ans;
-    }
+    } */
 }

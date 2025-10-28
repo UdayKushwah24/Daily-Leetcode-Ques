@@ -2,29 +2,28 @@
 
 package DynamicProgramming;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
+  
+import java.util.*;
 public class ValentineMagic {
     public static void main(String[] args) {
-        // int boys[] = { 2, 11, 3 };
-        // int girls[] = { 5, 7, 3, 2 };
-        // Arrays.sort(boys);
-        // Arrays.sort(girls);
-        // System.out.println(Valentine(boys, girls, 0, 0));
+        int boys[] = { 2, 11, 3 };
+        int girls[] = { 5, 7, 3, 2 };
+        Arrays.sort(boys);
+        Arrays.sort(girls);
+        System.out.println(Valentine(boys, girls, 0, 0));
 
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int[] boys = new int[n];
-        for (int i = 0; i < n; i++) {
-            boys[i] = sc.nextInt();
-        }
-        int[] girls = new int[n];
-        for (int i = 0; i < m; i++) {
-            girls[i] = sc.nextInt();
-        }
-        System.out.println(Valentine(boys, girls, n, m));
+        // Scanner sc = new Scanner(System.in);
+        // int n = sc.nextInt();
+        // int m = sc.nextInt();
+        // int[] boys = new int[n];
+        // for (int i = 0; i < n; i++) {
+        //     boys[i] = sc.nextInt();
+        // }
+        // int[] girls = new int[n];
+        // for (int i = 0; i < m; i++) {
+        //     girls[i] = sc.nextInt();
+        // }
+        // System.out.println(Valentine(boys, girls, n, m));
     }
 
     private static int Valentine(int[] boys, int[] girls, int i, int j) {

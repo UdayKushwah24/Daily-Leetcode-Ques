@@ -16,6 +16,8 @@ public class LongestIncreasingSubs_300 {
             }
         }
     }
+
+    // return Arrays.stream(dp).max().getAsInt()
     int max = lis[0];
     for (int i = 0; i < lis.length; i++) {
         max = Math.max(max, lis[i]);
@@ -25,7 +27,8 @@ public class LongestIncreasingSubs_300 {
    
  
     public static void main(String[] args) {
-        int[] nums = { 10, 9, 2, 5, 3, 7, 101, 18 };
+        int[] nums =  {0, 8, 4, 2, 12, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
+        // int[] nums = { 10, 9, 2, 5, 3, 7, 101, 18 };
         System.out.println(lengthofLIS(nums));
     }
 }
