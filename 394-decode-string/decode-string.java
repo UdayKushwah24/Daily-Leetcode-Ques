@@ -13,8 +13,12 @@ class Solution {
                     numString = stack.pop() + numString;
                 }
                 int num = Integer.parseInt(numString);
-                String repeat = temp.repeat(num);
-                stack.add(repeat);
+                // String repeat = temp.repeat(num);
+                StringBuilder repeat = new StringBuilder();
+                for(int p = 0; p < num; p++) {
+                    repeat.append(temp);
+                }
+                stack.add(repeat.toString());
             } else {
                 stack.push(s.charAt(i) + "");
             }
