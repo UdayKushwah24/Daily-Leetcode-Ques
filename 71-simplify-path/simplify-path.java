@@ -7,7 +7,7 @@ class Solution {
         String[] arr = path.split("/+");
         Stack<String> stack = new Stack<>();
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i].isEmpty() || arr[i].equals(".")) {
+            if(arr[i] == "" || arr[i].equals(".")) {
                 continue;
             }
          
