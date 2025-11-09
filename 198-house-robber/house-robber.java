@@ -3,7 +3,7 @@ class Solution {
 
     
     public static int rob(int [] dp,int[] nums, int i) {
-        if(i == nums.length || i == nums.length+1) {
+        if(i >= nums.length) {
             return 0;
         }
         if(dp[i] != -1) return dp[i];
