@@ -1,20 +1,16 @@
 class Solution {
 
     private static void dfs(char[][] grid, int i, int j) {
-        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] == '0') {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] == '0' || grid[i][j] == '*') {
             return;
         }
-
-        if (grid[i][j] == '*') {
-            return;
-        } else {
-
+ 
             grid[i][j] = '*'; // mark visited
             dfs(grid, i, j - 1); // left
             dfs(grid, i - 1, j); // top
             dfs(grid, i, j + 1); // right
             dfs(grid, i + 1, j); // bottom
-        }
+        
     }
 
     public int numIslands(char[][] grid) {
