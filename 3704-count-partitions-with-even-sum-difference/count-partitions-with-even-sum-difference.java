@@ -14,10 +14,10 @@ class Solution {
         }
 
         int ans = 0;
-        for(int i = 0; i < n-1 ; i++) {             // ⬅ change 1
+        for(int i = 0; i < n-1 ; i++) {              
             int left = pre[i];
-            int right = suf[i+1];                  // ⬅ change 2
-            if((left - right) % 2 == 0) ans++;     // ⬅ change 3
+            int right = suf[i+1];                  
+            if((left - right) % 2 == 0) ans++; 
         }
         return ans;
     }
