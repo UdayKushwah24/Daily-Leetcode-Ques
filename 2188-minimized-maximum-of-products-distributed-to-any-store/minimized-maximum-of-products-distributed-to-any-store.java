@@ -14,7 +14,6 @@ class Solution {
         }
         return ans;
     }
-
     public boolean possible(int[ ] arr, int threshold, int mid) {
         int div = 0;
         for(int i = 0;  i < arr.length; i++) {
