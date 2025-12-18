@@ -6,7 +6,7 @@ class Solution {
         }
         int c = 0;
         int i = 1;
-       while(true) {
+       while(i <= 10000) {
             if(!set.contains(i)) {
                 c++;
             }
@@ -15,5 +15,6 @@ class Solution {
             }
             i++;
         }
+        return i;
     }
 }
