@@ -8,7 +8,7 @@ public class Solution {
             while (nums[i] - nums[j] > 1) {
                 j++;
             }
-            if (nums[i] - nums[j] == 1) {
+            if (nums[i] -  nums[j] == 1) {
                 maxLength = Math.max(maxLength, i - j + 1);
             }
         }
