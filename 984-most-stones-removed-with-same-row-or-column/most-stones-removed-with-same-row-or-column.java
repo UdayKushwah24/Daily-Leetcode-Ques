@@ -1,24 +1,27 @@
 class Solution {
-    public int removeStones(int[][] stones) {
-        Set<int[]> visited = new HashSet();
-        int numIslands = 0;
-        for (int[] u : stones){
-            if (!visited.contains(u)){
-               dfs(u, visited, stones); 
-               numIslands++;
+   public static int removeStones(int[][] stones) {
+        int n = stones.length;
+        boolean[] visited = new boolean[n];
+
+        int group = 0;
+        for (int i = 0; i < visited.length; i++) {
+            if (visited[i] == true) {
+                continue;
             }
+
+            dfs(stones, i, visited);
+            group++;
         }
-        return stones.length - numIslands;
+        return n - group;
     }
-    
-    private void dfs(int[] u, Set<int[]> visited, int[][] stones){
-        visited.add(u);
-        for (int[] v: stones){
-            if (!visited.contains(v)){
-				// stone with same row or column. group them into island
-                if (u[0] == v[0] || u[1] == v[1]) {
-                    dfs(v, visited, stones);
-                }
+
+    private static void dfs(int[][] stones, int index, boolean[] visited) {
+        visited[index] = true;
+        for (int i = 0; i < stones.length; i++) {
+            int r = stones[index][0];
+            int c = stones[index][1];
+            if (!visited[i] && (stones[i][0] == r || stones[i][1] == c)) {
+                 dfs(stones, i, visited);
             }
         }
     }
