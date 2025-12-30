@@ -11,7 +11,7 @@ class Solution {
             adjList.get(u).add(v);
             adjList.get(v).add(u);
         }
-        return dfs(source,destination,adjList);
+        return dfs(source, destination, adjList);
     }
 
     public boolean dfs(int src, int des, ArrayList<ArrayList<Integer>> adjList) {
@@ -28,17 +28,16 @@ class Solution {
             //mark visited
             visited.add(r);
             //self work
-            if(r==des){
+            if (r == des) {
                 return true;
             }
-            
+
             //add unvisited nbrs
             for (int nbrs : adjList.get(r)) {
-                if (!visited.contains(nbrs)) 
-                    st.push(nbrs);
-                }
+                if (!visited.contains(nbrs)) st.push(nbrs);
             }
-            return false;
-            
         }
+        return false;
+    }
+
 }
