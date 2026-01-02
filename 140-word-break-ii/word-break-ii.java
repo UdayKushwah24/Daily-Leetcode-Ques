@@ -9,18 +9,19 @@ class Solution {
 
     }
 
-    public void solve(int i, String currSentence, String s,  List<String> wordDict ) {
-
-        if(i >= s.length()){
-            result.add(currSentence.trim());
-            
+    public void solve(int i , String curr, String s,List<String> wordDict ) {
+        if (i >= s.length()) {
+            result.add(curr.trim());
             return;
         }
-        for (int j = i; j < s.length(); j++) {
-            String part = s.substring(i, j+1);
-            if(wordDict.contains(part)) {
-                solve(j+1, currSentence+" "+part, s, wordDict);
+
+        for(int j = i ; j < s.length(); j++){
+            String word = s.substring(i, j+1);
+            if(wordDict.contains(word)) {
+                solve(j+1, curr+word+" ", s, wordDict);
             }
         }
     }
+
+ 
 }
