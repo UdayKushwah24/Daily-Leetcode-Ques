@@ -16,7 +16,7 @@ class Solution {
             return dp[i][targetSum] = true;
         }
         if (i == 0 ) {
-            return targetSum == nums[0];
+            return dp[i][targetSum] = targetSum == nums[0];
         }
 
         if(i >= 0 && dp[i][targetSum] != null) return dp[i][targetSum] ;
