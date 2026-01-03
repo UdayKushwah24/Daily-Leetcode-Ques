@@ -1,6 +1,6 @@
 class Solution {
     public int numOfWays(int n) {
-           long mod = 1000000007;
+        long mod = 1000000007;
 
         long aba = 6; // first row
         long abc = 6; // first row
@@ -13,6 +13,6 @@ class Solution {
             abc = newAbc;
         }
 
-        return (int)((aba + abc) % mod);
+        return (int) ((aba + abc) % mod);
     }
 }
