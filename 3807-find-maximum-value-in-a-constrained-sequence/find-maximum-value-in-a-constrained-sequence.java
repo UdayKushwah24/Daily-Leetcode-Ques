@@ -2,7 +2,7 @@ class Solution {
     public int findMaxVal(int n, int[][] restrictions, int[] diff) {
 
         long[] ans = new long[n];
-        Arrays.fill(ans, Long.MAX_VALUE);
+        Arrays.fill(ans, Long.MAX_VALUE/2);
 
         ans[0] = 0;
         // Apply direct restrictions
@@ -21,7 +21,10 @@ class Solution {
         for (int i = n - 2; i >= 0; i--) {
             ans[i] = Math.min(ans[i], ans[i + 1] + diff[i]);
         }
-
-        return (int) Arrays.stream(ans).max().getAsLong();
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i  < n ; i++) {
+            max = Math.max(max, (int)ans[i]);
+        }
+        return max;
     }
 }
