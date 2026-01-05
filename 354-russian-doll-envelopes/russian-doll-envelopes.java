@@ -1,4 +1,64 @@
 class Solution {
+   public static int maxEnvelopes(int[][] envelopes) {
+        // Arrays.sort(envelopes, new Comparator<int[]>(){
+        //     @Override
+        //     public int compare(int[] a, int[] b) {
+        //         if(a[0] == a[1]) {
+        //             return b[1] - a[1];
+        //         } else {
+        //             return a[1] - b[1];
+        //         }
+        //     }
+        // });
+
+        Arrays.sort(envelopes, (a, b)->{
+            if(a[0] == b[0]) {
+                return b[1] - a[1];
+            } else {
+                return a[0] - b[0];
+            }
+        });
+
+        int[] arr = new int[envelopes.length];
+        for(int i = 0; i  < arr.length; i++) {
+            arr[i] = envelopes[i][1];
+        }
+        return lisLogn(arr);
+    }
+
+    public static int lisLogn(int[] arr) {
+        List<Integer> ll = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            int idx = BinarySearch(ll, arr[i]);
+            if (idx == -1) {
+                ll.add(arr[i]);
+                // System.out.println(ll);
+            } else {
+                ll.remove(idx);
+                ll.add(idx, arr[i]);
+            }
+        }
+        // System.out.println(ll);
+        return ll.size();
+    }
+
+    public static int BinarySearch(List<Integer> ll, int ele) {
+        int low = 0;
+        int high = ll.size() - 1;
+        int idx = -1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (ll.get(mid) >= ele) {
+                idx = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return idx;
+    }
+}
+/* class Solution {
     public int maxEnvelopes(int[][] envelopes) {
         Arrays.sort(envelopes, (a, b)->{
             if(a[0] == b[0]) {
@@ -69,4 +129,4 @@ class Solution {
     //     }
     //     return max;
     // }
-}
+} */
