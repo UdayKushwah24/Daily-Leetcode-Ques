@@ -1,26 +1,28 @@
 class Solution {
-    public void Permutation(List<String> ll, String str, String ans) {
-        if (str.length() == 0) {
-            ll.add(ans);
+      List<String> ans = new ArrayList<>();
+ 
+
+    public   List<String> letterCasePermutation(String s) {
+        solve(s, 0, "");
+        return ans;
+    }
+
+    private   void solve(String s, int i, String cc) {
+
+        if(i == s.length()) {
+            ans.add(cc);
             return;
         }
 
-        char ch = str.charAt(0);
-
-        Permutation(ll, str.substring(1), ans + ch);
-        if (ch >= 'A' && ch <= 'Z') {
-            char next = (char) (ch + 32);
-            Permutation(ll, str.substring(1), ans + next);
-        } else if ((ch >= 'a' && ch <= 'z')) {
-            char next = (char) (ch - 32);
-            Permutation(ll, str.substring(1), ans + next);
+        if(s.charAt(i)-'0' >= 0 && s.charAt(i)-'0'<=9) {
+            solve(s, i+1, cc+s.charAt(i));
+        } else {
+            solve(s, i+1, cc+s.charAt(i));
+            if(s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+                solve(s, i+1, cc+ (char)((int)s.charAt(i)-32));
+            } else {
+                solve(s, i+1, cc+ (char)((int)s.charAt(i)+32));
+            }
         }
-
-    }
-
-    public List<String> letterCasePermutation(String s) {
-        List<String> ll = new ArrayList<>();
-        Permutation(ll, s, "");
-        return ll;
     }
 }
