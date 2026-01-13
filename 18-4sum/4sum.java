@@ -1,11 +1,11 @@
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-        if(nums[0] == 1000000000 && target == -294967296) {
-            return new ArrayList<>();
-        }
-        if(nums[0] == 1000000000 && target == -294967297) {
-            return new ArrayList<>();
-        }
+        // if(nums[0] == 1000000000 && target == -294967296) {
+        //     return new ArrayList<>();
+        // }
+        // if(nums[0] == 1000000000 && target == -294967297) {
+        //     return new ArrayList<>();
+        // }
         Arrays.sort(nums);
         int n = nums.length;
         HashSet<List<Integer>> set = new HashSet<>();
@@ -18,7 +18,7 @@ class Solution {
                 while(x < y) {
                     int num3 = nums[x];
                     int num4 = nums[y];
-                    long sum = (long)(num1 + num2 + num3 + num4);
+                    long sum = (long)num1 + num2 + num3 + num4;
                     if(sum == target) {
                         List<Integer> ll = new ArrayList<>();
                         ll.add(num1);
