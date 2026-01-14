@@ -1,8 +1,7 @@
 import java.util.*;
 
 class Solution {
-    // Helper class to represent active X-intervals
-    private static class Interval implements Comparable<Interval> {
+     private static class Interval implements Comparable<Interval> {
         int start, end;
         
         Interval(int start, int end) {
@@ -10,25 +9,22 @@ class Solution {
             this.end = end;
         }
         
-        // Needed for sort
-        public int compareTo(Interval other) {
+       public int compareTo(Interval other) {
             if (this.start != other.start) return Integer.compare(this.start, other.start);
             return Integer.compare(this.end, other.end);
         }
 
-        // Needed for removing specific objects from ArrayList
-        public boolean equals(Object o) {
+       public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Interval interval = (Interval) o;
             return start == interval.start && end == interval.end;
         }
     }
-
-    // Helper class for Sweep Line events
+ 
     private static class Event implements Comparable<Event> {
         int y;
-        int type; // 1 for start, -1 for end
+        int type;  
         int xStart, xEnd;
 
         Event(int y, int type, int xStart, int xEnd) {
@@ -56,15 +52,13 @@ class Solution {
         Collections.sort(sweepEvents);
 
         List<Interval> activeIntervals = new ArrayList<>();
-        // Store strips as: [y_bottom, height, union_width]
-        List<double[]> processedStrips = new ArrayList<>();
+         List<double[]> processedStrips = new ArrayList<>();
         
         double totalArea = 0;
         int prevY = sweepEvents.get(0).y;
 
         for (Event event : sweepEvents) {
-            // Process the gap (strip) between the previous event and this one
-            if (event.y > prevY) {
+        if (event.y > prevY) {
                 double unionWidth = getUnionWidth(activeIntervals);
                 double height = (double) event.y - prevY;
                 
@@ -74,8 +68,7 @@ class Solution {
                 }
             }
 
-            // Update active intervals list
-            Interval currentInterval = new Interval(event.xStart, event.xEnd);
+             Interval currentInterval = new Interval(event.xStart, event.xEnd);
             if (event.type == 1) {
                 activeIntervals.add(currentInterval);
             } else {
@@ -85,8 +78,7 @@ class Solution {
             prevY = event.y;
         }
 
-        // Second Pass: Find the split point
-        double targetArea = totalArea / 2.0;
+         double targetArea = totalArea / 2.0;
         double accumulatedArea = 0;
 
         for (double[] strip : processedStrips) {
@@ -104,25 +96,21 @@ class Solution {
 
         return 0.0;
     }
-
-    // Brute force union width calculation: O(K log K) where K is active squares
-    private double getUnionWidth(List<Interval> intervals) {
+     private double getUnionWidth(List<Interval> intervals) {
         if (intervals.isEmpty()) return 0;
-
-        // Create a copy to sort, so we don't mess up the main list order unnecessarily
-        List<Interval> sorted = new ArrayList<>(intervals);
+   List<Interval> sorted = new ArrayList<>(intervals);
         Collections.sort(sorted);
 
         double unionLength = 0;
-        double currentEnd = -1e18; // Negative infinity
+        double currentEnd = -1e18; 
 
         for (Interval iv : sorted) {
             if (iv.start >= currentEnd) {
-                // Disjoint interval
+                
                 unionLength += (iv.end - iv.start);
                 currentEnd = iv.end;
             } else if (iv.end > currentEnd) {
-                // Overlapping interval
+                
                 unionLength += (iv.end - currentEnd);
                 currentEnd = iv.end;
             }
