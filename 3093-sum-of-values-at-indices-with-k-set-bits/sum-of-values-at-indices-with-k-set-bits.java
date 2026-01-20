@@ -2,10 +2,9 @@ class Solution {
     private int countBit(int i) {
 		int c = 0;
 		while (i > 0) {
-			if (i % 2 == 1) {
+			 
 				c++;
-			}
-			i /= 2;
+			i =( i & (i-1));
 		}
 		return c;
 	}
