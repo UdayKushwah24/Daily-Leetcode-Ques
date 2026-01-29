@@ -9,9 +9,9 @@ class Solution {
             }
         }
         for (int count : productFreq.values()) {
-            if (count > 1) {
+          //  if (count > 1) {
                 res += (count * (count - 1)) / 2;
-            }
+           // }
         }
         return res * 8;
     }
