@@ -1,32 +1,31 @@
-class Solution {
-    public int[] deckRevealedIncreasing(int[] deck) {
-        Arrays.sort(deck);
+// class Solution {
+//     public int[] deckRevealedIncreasing(int[] deck) {
+//         Arrays.sort(deck);
 
-        int n = deck.length;
-        int[] ans = new int[n];
+//         int n = deck.length;
+//         int[] ans = new int[n];
 
-        boolean skip = false;
-        int placed = 0;   // how many cards placed
-        int p = 0;        // pointer in deck
-        int i = 0;        // circular index
+//         boolean skip = false;
+//         int placed = 0;   // how many cards placed
+//         int p = 0;        // pointer in deck
+//         int i = 0;        // circular index
 
-        while (placed < n) {
-            if (ans[i] == 0) {              // empty position
-                if (!skip) {
-                    ans[i] = deck[p++];
-                    placed++;
-                }
-                skip = !skip;
-            }
-            i = (i + 1) % n;                // circular move
-        }
+//         while (placed < n) {
+//             if (ans[i] == 0) {              // empty position
+//                 if (!skip) {
+//                     ans[i] = deck[p++];
+//                     placed++;
+//                 }
+//                 skip = !skip;
+//             }
+//             i = (i + 1) % n;                // circular move
+//         }
 
-        return ans;
-    }
-}
+//         return ans;
+//     }
+// }
 
 
-/* 
 
 class Solution {
     public int[] deckRevealedIncreasing(int[] deck) {
@@ -52,6 +51,3 @@ class Solution {
         return ans;
     }
 }
-
-
- */
