@@ -1,60 +1,51 @@
 class Solution {
     public int minJumps(int[] arr) {
         HashMap<Integer, List<Integer>> map = new HashMap<>();
+        int n = arr.length;
         for (int i = 0; i < arr.length; i++) {
             if (!map.containsKey(arr[i])) {
                 map.put(arr[i], new ArrayList<>());
             }
-            List<Integer> temp = map.get(arr[i]);
-            temp.add(i);
-            map.put(arr[i], temp);
+            List<Integer> ll = map.get(arr[i]);
+            ll.add(i);
+            map.put(arr[i], ll);
         }
-        int n = arr.length;
-        return bfs(map, arr);
+        return solve(arr, map);
     }
 
-    public static int bfs(HashMap<Integer, List<Integer>> map, int[] arr) {
-        int n = arr.length;
-        boolean vis[] = new boolean[n];
+    public int solve(int[] arr, HashMap<Integer, List<Integer>> map) {
         Queue<Integer> q = new LinkedList<>();
+        int n  = arr.length;
+        boolean [] vis = new boolean[n];
         q.add(0);
-        int step = 0;
-        while (!q.isEmpty()) {
+         vis[0] = true;
+        int jump = 0;
+        while(!q.isEmpty()) {
             int s = q.size();
-            for (int j = 0; j < s; j++) {
-                int curr = q.poll();
-                vis[curr] = true;
-                 
-                if (curr == n - 1) {
-                    return step;
+            for(int i = 0; i < s; i++) {
+                int cc = q.poll();
+                if(cc == n-1) return jump;
+                int left = cc -  1;
+                int right = cc + 1;
+                if(left >= 0 && vis[left] == false) {
+                    q.add(left);
+                    vis[left] = true;
                 }
-                int left = curr - 1;
-                int right = curr + 1;
-                if (left >= 0) {
-                    if (vis[left] == false) {
-                        q.add(left);
-                        vis[left] = true;
-                    }
+                if(right < n && vis[right] == false) {
+                    q.add(right);
+                    vis[right] = true;
                 }
-                if (right < n) {
-                    if (vis[right] == false) {
-                        q.add(right);
-                        vis[right] = true;
+
+                if(map.containsKey(arr[cc])) {
+                    for(int val : map.get(arr[cc])) {
+                        q.add(val);
+                        vis[val] = true;
                     }
-                }
-                int val = arr[curr];
-                if (map.containsKey(val)) {
-                    List<Integer> rv = map.get(val);
-                    for (int i = 0; i < rv.size(); i++) {
-                        q.add(rv.get(i));
-                        vis[rv.get(i)] = true;
-                    }
-                    map.remove(val);
+                    map.remove(arr[cc]);
                 }
             }
-            step++;
+            jump++;
         }
         return -1;
-
     }
 }
