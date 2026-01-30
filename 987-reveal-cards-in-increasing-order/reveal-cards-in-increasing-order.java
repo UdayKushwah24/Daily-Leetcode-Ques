@@ -52,27 +52,26 @@ class Solution {
 }
  */
 
+
+
 class Solution {
     public int[] deckRevealedIncreasing(int[] deck) {
         Arrays.sort(deck);
 
         int n = deck.length;
-        int[] ans = new int[n];
-        boolean skip = false;
-        int placed = 0;
-        int i = 0;
-        int p = 0;
-        while (placed < n) {
-            if (ans[i] == 0) {
-                if (!skip) {
-                    ans[i] = deck[p++];
-                    placed++;
-                }
-                skip = !skip;
-            }
-            i = (i + 1) % n;
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            q.add(i);
         }
+        int[] ans = new int[n];
 
+        for(int card : deck) {
+            int f = q.poll();
+            ans[f]  = card;
+            if(!q.isEmpty()) {
+                q.add(q.poll());
+            }
+        }
         return ans;
     }
 }
