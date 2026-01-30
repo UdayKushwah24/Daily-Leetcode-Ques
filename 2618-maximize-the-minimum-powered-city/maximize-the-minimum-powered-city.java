@@ -10,7 +10,6 @@ class Solution {
                 prefix[right + 1] -= nums[i];
             }
         }
-
         for (int i = 1; i < n; i++) {
             prefix[i] += prefix[i - 1];
         }
@@ -56,5 +55,6 @@ class Solution {
             diff[end] -= need;
         }
         return true;
+
     }
 }
