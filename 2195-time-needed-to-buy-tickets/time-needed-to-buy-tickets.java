@@ -11,9 +11,7 @@ class Solution {
             }
         }
         int ans = 0;
-
         while(!q.isEmpty()) {
-
             int tt = q.poll();
             if(tt == -1) {
                 persont--;
