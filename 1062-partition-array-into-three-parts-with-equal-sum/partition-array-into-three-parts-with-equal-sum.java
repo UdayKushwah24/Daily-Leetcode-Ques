@@ -20,7 +20,7 @@ class Solution {
             }
 
             if (count == 2) return true;
-        }
+        }  
         return false;
     }
 }
