@@ -1,4 +1,4 @@
-class Solution {
+/* class Solution {
     public int minPair(List<Integer> v) {
         int minSum = Integer.MAX_VALUE;
         int pos = -1;
@@ -36,6 +36,44 @@ class Solution {
     private boolean isSorted(List <Integer> v) {
         for(int i = 0; i < v.size() - 1; i ++){
             if(v.get(i) > v.get(i + 1)) return false;
+        }
+        return true;
+    }
+}  */
+
+
+
+
+
+
+class Solution {
+    public int minimumPairRemoval(int[] nums) {
+        int n = nums.length;
+        int ops = 0;
+        while (!isSorted(nums, n)) {
+            ops++;
+            int minSum = Integer.MAX_VALUE;
+            int pos = -1;
+            for (int i = 1; i < n ; i++) {
+                int sum = nums[i] + nums[i - 1];
+                if (sum < minSum) {
+                    minSum = sum;
+                    pos = i;
+                }
+            }
+            nums[pos-1] = minSum;
+            for(int i = pos;i < n-1;i++) {
+                nums[i] = nums[i+1];
+            }
+            n--;
+        }
+        return ops;
+    }
+
+    private boolean isSorted(int[] arr, int n) {
+        for (int i = 1; i < n ; i++) {
+            if (arr[i] < arr[i - 1])
+                return false;
         }
         return true;
     }
