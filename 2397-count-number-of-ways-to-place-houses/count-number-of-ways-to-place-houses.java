@@ -1,7 +1,7 @@
 class Solution {
     long mod = 1000000007;
     public int countHousePlacements(int n) {
-        long dp[] = new long[n+1];
+        long dp[] = new long[n];
         Arrays.fill(dp, -1);
         long x = placeHouse(dp, n, 0) ;
          
