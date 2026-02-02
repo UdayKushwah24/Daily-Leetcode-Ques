@@ -13,8 +13,11 @@ class Solution {
     }
 
     public void mergePair(List<Integer> v, int pos) {
-        v.set(pos, v.get(pos) + v.get(pos + 1));
-        v.remove(pos + 1);
+        // v.set(pos, v.get(pos) + v.get(pos + 1));
+        // v.remove(pos + 1);
+
+        int rvSum = v.remove(pos) + v.remove(pos);
+        v.add(pos, rvSum);
     }
 
     public int minimumPairRemoval(int[] nums) {
