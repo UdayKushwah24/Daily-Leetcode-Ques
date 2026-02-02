@@ -1,8 +1,7 @@
 class Solution {
     public int minPair(List<Integer> v) {
-        int minSum = (int)1e9;
+        int minSum = Integer.MAX_VALUE;
         int pos = -1;
-
         for(int i = 0; i < v.size() - 1; i ++){
             int sum = v.get(i) + v.get(i + 1);
             if (sum < minSum) {
