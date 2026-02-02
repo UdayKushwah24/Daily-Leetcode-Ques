@@ -1,0 +1,1 @@
+<h2>count-number-of-ways-to-place-houses Notes</h2><hr>[ Time taken: 2 hrs 58 m 3 s ]
