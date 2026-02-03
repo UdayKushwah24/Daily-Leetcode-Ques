@@ -27,15 +27,15 @@ class Solution {
 
         sum += mat[cr][cc];
 
-        if (sum > 5000) return;   // pruning
+        
 
         if (cr == mat.length - 1) {
             ans = Math.min(ans, Math.abs(tgt - sum));
             return;
         }
 
-        if (dp[cr][sum] != -1 && dp[cr][sum] <= Math.abs(tgt - sum)) {
-            return; // already explored better
+        if (dp[cr][sum] != -1) {
+            return;  
         }
 
         dp[cr][sum] = Math.abs(tgt - sum);
