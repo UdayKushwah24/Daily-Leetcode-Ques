@@ -27,10 +27,8 @@
 } 
  */
 
-
-
 class Solution {
-
+    /* 
     public int maxFrequency(int[] nums, int k) {
         int count[] = new int[51];
         int res = 0;
@@ -39,13 +37,19 @@ class Solution {
             res = Math.max(res, count[a]-count[k]);
         }
         return count[k] + res;
+    } */
+
+    public int maxFrequency(int[] nums, int k) {
+        int count[] = new int[51];
+        int res = 0;
+        for (int a : nums) {
+            count[a] = Math.max(count[a], count[k]) + 1;
+            res = Math.max(res, count[a]-count[k]);
+        }
+        return count[k] + res;
     }
- 
- 
 
-} 
-
-
+}
 
 /* 
 class Solution {
