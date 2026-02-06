@@ -24,8 +24,44 @@
 
     }
 
-} */
+} 
+ */
 
+
+
+class Solution {
+
+    public int maxFrequency(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int a : nums) {
+            map.put(a, map.getOrDefault(a,0) + 1);
+        }
+
+        int res = 0;
+        for(int a : map.keySet()) {
+            res = Math.max(res, kedane(nums, k , a));
+        }
+        return map.getOrDefault(k, 0 ) + res;
+    }
+
+    public int kedane(int[] nums, int k, int b) {
+        int res = 0; 
+        int curr = 0;
+        for(int a : nums) {
+            if(a == b) curr++;
+            if(a == k) curr--;
+            if(curr < 0) curr = 0;
+            res = Math.max(res, curr);
+        }
+        return res;
+    }
+ 
+
+} 
+
+
+
+/* 
 class Solution {
     public int maxFrequency(int[] nums, int k) {
 
@@ -55,4 +91,4 @@ class Solution {
 }
 
 
-// 3434
+// 3434 */
