@@ -1,4 +1,4 @@
-class Solution {
+/* class Solution {
 
     public int maxFrequency(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -24,4 +24,35 @@ class Solution {
 
     }
 
+} */
+
+class Solution {
+    public int maxFrequency(int[] nums, int k) {
+
+        int base = 0;
+        for (int x : nums)
+            if (x == k) base++;
+
+        int ans = base;
+
+        Set<Integer> set = new HashSet<>();
+        for (int x : nums)
+            if (x != k) set.add(x);
+
+        for (int v : set) {
+            int cur = 0, best = 0;
+
+            for (int x : nums) {
+                if (x == v) cur++;
+                else if (x == k) cur--;
+                cur = Math.max(cur, 0);
+                best = Math.max(best, cur);
+            }
+            ans = Math.max(ans, base + best);
+        }
+        return ans;
+    }
 }
+
+
+// 3434
