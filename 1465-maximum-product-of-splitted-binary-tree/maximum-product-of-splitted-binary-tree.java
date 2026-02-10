@@ -18,14 +18,14 @@ class Solution {
     long totalSum = 0;
     long maxProduct = 0;
  
-    long totalsum(TreeNode root) {
+    public long totalsum(TreeNode root) {
         if (root == null) return 0;
         return root.val 
              + totalsum(root.left) 
              + totalsum(root.right);
     }
  
-    long dfs(TreeNode root) {
+    public long dfs(TreeNode root) {
         if (root == null) return 0;
  
         long left = dfs(root.left);
