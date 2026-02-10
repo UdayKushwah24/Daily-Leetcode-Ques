@@ -12,28 +12,56 @@
  *         this.right = right;
  *     }
  * }
- */
+ *//* 
+    class Solution {
+     static final int MOD = 1_000_000_007;
+     long totalSum = 0;
+     long maxProduct = 0;
+    
+     long totalsum(TreeNode root) {
+         if (root == null) return 0;
+         return root.val 
+              + totalsum(root.left) 
+              + totalsum(root.right);
+     }
+    
+     long dfs(TreeNode root) {
+         if (root == null) return 0;
+    
+         long left = dfs(root.left);
+         long right = dfs(root.right);
+    
+          
+         long subSum = root.val + left + right;
+    
+         long product = subSum * (totalSum - subSum);
+         maxProduct = Math.max(maxProduct, product);
+    
+         return subSum;
+     }
+    
+     public int maxProduct(TreeNode root) {
+         totalSum = totalsum(root); // O(n)
+         dfs(root);                    // O(n)
+         return (int)(maxProduct % MOD);
+     }
+    } */
+
 class Solution {
     static final int MOD = 1_000_000_007;
-    long totalSum = 0;
+     
     long maxProduct = 0;
- 
-    public long totalsum(TreeNode root) {
-        if (root == null) return 0;
-        return root.val 
-             + totalsum(root.left) 
-             + totalsum(root.right);
-    }
- 
-    public long dfs(TreeNode root) {
-        if (root == null) return 0;
- 
-        long left = dfs(root.left);
-        long right = dfs(root.right);
+    long totalSum = 0;
 
-         
+    long totalsum(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        long left = totalsum(root.left);
+        long right = totalsum(root.right);
+
         long subSum = root.val + left + right;
- 
+
         long product = subSum * (totalSum - subSum);
         maxProduct = Math.max(maxProduct, product);
 
@@ -42,7 +70,8 @@ class Solution {
 
     public int maxProduct(TreeNode root) {
         totalSum = totalsum(root); // O(n)
-        dfs(root);                    // O(n)
-        return (int)(maxProduct % MOD);
+         totalsum(root); // O(n)
+        
+        return (int) (maxProduct % MOD);
     }
 }
