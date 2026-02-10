@@ -92,8 +92,7 @@ class Solution {
         queue.add(root);
         boolean isEvenLevel = true;
 
-        while (!queue.isEmpty()) {
-            List<Integer> ll = new ArrayList<>();
+        while (!queue.isEmpty()) { 
             int size = queue.size();
             int preVal = isEvenLevel ? Integer.MIN_VALUE : Integer.MAX_VALUE;
             for (int i = 0; i < size; i++) {
@@ -109,7 +108,7 @@ class Solution {
                     }
                     preVal = rv.val;
                 }
-                ll.add(rv.val);
+              
                 if (rv.left != null) {
                     queue.add(rv.left);
                 }
