@@ -12,7 +12,7 @@
  *         this.right = right;
  *     }
  * }
- */
+ *//* 
 class Solution {
     TreeSet<Integer> ll = new TreeSet<>();
     public int findSecondMinimumValue(TreeNode root) {
@@ -26,6 +26,26 @@ class Solution {
         if(root == null) return ;
 
         ll.add(root.val);
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+} */
+
+
+
+
+class Solution {
+    List<Integer> ll = new ArrayList<>();
+    public int findSecondMinimumValue(TreeNode root) {
+        preOrder(root);
+        if(ll.size() <= 1) return -1;
+        Collections.sort(ll);
+        return ll.get(1);
+    }
+
+    public void preOrder(TreeNode root) {
+        if(root == null) return ;
+        if(!ll.contains(root.val))ll.add(root.val);
         preOrder(root.left);
         preOrder(root.right);
     }
