@@ -73,9 +73,9 @@ class Solution {
         }
 
         Arrays.sort(newQueries, (a, b) -> (a[1] - b[1]));
-        for (int i = 0; i < q; i++) {
+       /*  for (int i = 0; i < q; i++) {
             System.out.println(newQueries[i][0] + " " + newQueries[i][1] + " " + newQueries[i][2]);
-        }
+        } */
 
         Trie trie = new Trie();
         int[] ans = new int[q];
