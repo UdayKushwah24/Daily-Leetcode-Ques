@@ -84,6 +84,7 @@ class Solution {
             int xi = query[0];
             int mi = query[1];
             int idx = query[2];
+                
 
             while(i < nums.length && nums[i] <= mi) {
                 trie.insert(nums[i]);
