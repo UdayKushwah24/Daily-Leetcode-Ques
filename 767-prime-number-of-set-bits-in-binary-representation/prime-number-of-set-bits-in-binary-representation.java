@@ -33,7 +33,6 @@
 } */
 
 class Solution {
-
     public boolean CheckPrime(int n) {
         if (n == 1) return false;
         for (int i = 2; i < n; i++) {
@@ -44,7 +43,8 @@ class Solution {
     public int countPrimeSetBits(int left, int right) {
         int count = 0;
         for (int i = left; i <= right; i++) {
-            if (CheckPrime(Integer.bitCount(i))) count++;
+            int bit = Integer.bitCount(i);
+            if (CheckPrime(bit)) count++;
         }
         return count;
     }
