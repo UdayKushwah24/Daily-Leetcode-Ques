@@ -8,10 +8,10 @@ class Solution {
                 set = true;
                 c = 1;
             }
-            n >>= 1;
             if (set && ((n & 1) == 0)) {
                 c++;
             }
+            n >>= 1;
             if ((n & 1) != 0) {
                 ans = Math.max(ans , c);
             }
