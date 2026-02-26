@@ -1,6 +1,5 @@
 class Solution {
     public int numSteps(String s) {
-
         int step = 0;
         while (s.length() > 1) {
             int n = s.length();
@@ -12,7 +11,6 @@ class Solution {
             } else {
                 // add 1
                 int i = n - 1;
-
                 while (i >= 0 && s.charAt(i) == '1') {
                     i--;
                 }
