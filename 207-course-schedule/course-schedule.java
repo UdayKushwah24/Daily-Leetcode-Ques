@@ -1,37 +1,43 @@
 class Solution {
+  
+
+    private HashMap<Integer, List<Integer>> graph = new HashMap<>();
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        HashMap<Integer, List<Integer>> map = new HashMap<>();
-        for(int i = 0; i < numCourses; i++) {
-            map.put(i , new ArrayList<>());
+        for (int i = 0; i < numCourses; i++) {
+            graph.put(i, new ArrayList<>());
         }
-        for(int i = 0; i < prerequisites.length; i++) {
-            int v1 = prerequisites[i][0];
-            int v2 = prerequisites[i][1];
-            map.get(v2).add(v1);
+        for (int g[] : prerequisites) {
+            int u = g[0];
+            int v = g[1];
+            graph.get(v).add(u);
         }
-        int in[] = new int[numCourses];
-        for(int vtx : map.keySet()) {
-            for(int nbrs : map.get(vtx)) {
-                in[nbrs]++;
-            }
-        }
+        int[] in = indegree();
         Queue<Integer> q = new LinkedList<>();
-        for(int i = 0; i < numCourses; i++) {
-            if(in[i] == 0) {
-                q.add(i);
-            }
+        for (int i = 0; i < in.length; i++) {
+            if(in[i] == 0) q.add(i);
         }
-        int c = 0; 
+        int c = 0;
         while(!q.isEmpty()) {
-            int v = q.poll();
+            int rv = q.remove();
             c++;
-            for(int nbrs : map.get(v)) {
+            for(int nbrs : graph.get(rv)) {
                 in[nbrs]--;
-                if(in[nbrs] == 0) {
-                    q.add(nbrs);
-                }
+                if(in[nbrs] == 0) q.add(nbrs);
             }
         }
-        return numCourses == c;
+        return  c == numCourses;
     }
+
+    public int[] indegree() {
+        int[] in = new int[graph.size()];
+        for (int u : graph.keySet()) {
+            for (int v : graph.get(u)) {
+                in[v]++;
+            }
+        }
+
+        return in;
+    }
+
 }
