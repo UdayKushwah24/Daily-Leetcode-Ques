@@ -1,13 +1,14 @@
-/* class Solution {
+class Solution {
     class coordinates {
         int x;
         int y;
         int r;
-
-        public coordinates(int x, int y, int r) {
+        int idx;
+        public coordinates(int x, int y, int r, int idx) {
             this.x = x;
             this.y = y;
             this.r = r;
+            this.idx = idx;
         }
     }
 
@@ -20,32 +21,32 @@
             int x = bomb[0];
             int y = bomb[1];
             int r = bomb[2];
-            q.add(new coordinates(x, y, r));
-            ans = Math.max(ans, solve(idx,q, bombs));
+            q.add(new coordinates(x, y, r, idx));
+            ans = Math.max(ans, solve(q, bombs));
             idx++;
             q.clear();
         }
         return ans;
     }
 
-    public int solve(int idx, Queue<coordinates> q, int[][] bombs) {
+    public int solve(Queue<coordinates> q, int[][] bombs) {
         int count = 0;
         HashSet<String> vis = new HashSet<>();
         while (!q.isEmpty()) {
 
             coordinates rv = q.poll();
-            String key = rv.x + "#" + rv.y + "#" + rv.r;
+            String key = rv.x + "#" + rv.y + "#" + rv.r + "#" + rv.idx;
             if (vis.contains(key))
                 continue;
             vis.add(key);
-            explode(idx, rv, q, bombs);
+            explode( rv, q, bombs);
             count++;
         }
 
         return count;
     }
 
-    public void explode(int idx, coordinates rv, Queue<coordinates> q, int[][] bombs) {
+    public void explode(coordinates rv, Queue<coordinates> q, int[][] bombs) {
         int x = rv.x;
         int y = rv.y;
         int r = rv.r;
@@ -54,18 +55,17 @@
             int x1 = bombs[i][0];
             int y1 = bombs[i][1];
             int r1 = bombs[i][2];
-            if (idx == i) continue;
             long dx = x - x1;
             long dy = y - y1;
             long dist = dx * dx + dy * dy;
             if (dist <= (long) r * r) {
-                q.add(new coordinates(x1, y1, r1));
+                q.add(new coordinates(x1, y1, r1, i));
             }
 
         }
     }
-} */
-
+}
+/* 
 class Solution {
     class coordinates {
         int x;
@@ -138,8 +138,8 @@ class Solution {
             long dist = dx * dx + dy * dy;
 
             if (dist <= (long) r * r) {
-                q.add(new coordinates(x1, y1, r1, i)); // modified
+                q.add(new coordinates(x1, y1, r1, i));  
             }
         }
     }
-}
+} */
