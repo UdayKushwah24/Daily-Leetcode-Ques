@@ -20,20 +20,7 @@ class NumArray {
         segmentTree[i] = segmentTree[2*i+1] + segmentTree[2*i + 2];
     }
     
-    public void update(int index, int val) {
-        updateQuery(0, 0,n-1 , index, val);
-    }
-    public void updateQuery(int i, int l, int r, int idx, int val) {
-        if(l == r) {
-            segmentTree[i] = val;
-            return;
-        }
-        int mid =  l + (r - l) / 2;
-        if(idx <= mid)  updateQuery(2*i+1, l, mid, idx , val);
-        else updateQuery(2*i+2, mid+1, r, idx , val);
-         segmentTree[i] = segmentTree[2*i+1] + segmentTree[2*i + 2];
-    }
-    
+     
     public int sumRange(int left, int right) {
         return sum(0, 0, n-1, left, right);
     }
