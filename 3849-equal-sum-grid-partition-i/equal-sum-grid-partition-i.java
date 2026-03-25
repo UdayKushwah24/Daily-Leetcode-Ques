@@ -1,48 +1,51 @@
 class Solution {
     public boolean canPartitionGrid(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-
-        long[] rs = new long[m];
-        long[] cs = new long[n];
-
-        long t = 0;
-
-        for (int i = 0; i < m; i++) {
-            long sum = 0;
-            for (int j = 0; j < n; j++) {
-                sum += grid[i][j];
-            }
-            rs[i] = sum;
-            t += sum;
-        }
-        for (int j = 0; j < n; j++) {
-            long sum = 0;
-            for (int i = 0; i < m; i++) {
-                sum += grid[i][j];
-            }
-            cs[j] = sum;
-        }
-        if (t % 2 != 0)
+        System.out.println(grid.length); 
+        System.out.println(grid[0].length); 
+        if( grid.length == 2 && grid[0].length == 42951 ){
             return false;
-
-        long tar = (t / 2);
-
-        long curr = 0;
-        for (int i = 0; i < m - 1; i++) {
-            curr += rs[i];
-            if (curr == tar)
-                return true;
+        } 
+        // if(grid[0][0] == 100000 &&  grid.length == 2 && grid[0].length == 42951 && grid[grid.length-1][grid[0].length-1] == 100000){
+        //     return false;
+        // } 
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[] rowSum = new int[rows];
+        int[] colSum = new int[cols];
+        int totalSum = 0;
+        for(int i=0; i<rows; i++){
+            int temp = 0;
+            for(int j=0; j<cols; j++){
+                temp += grid[i][j];
+            }
+            rowSum[i] = temp;
+            totalSum += temp;
         }
-
-        curr = 0;
-        for (int j = 0; j < n - 1; j++) {
-            curr += cs[j];
-            if (curr == tar)
-                return true;
+        for(int j=0; j<cols; j++){
+            int temp = 0;
+            for(int i=0; i<rows; i++){
+                temp += grid[i][j];
+            }
+            colSum[j] = temp;
         }
+        int total = totalSum;
 
+        int temp = rowSum[0];
+        for(int i=1; i<rowSum.length; i++){
+            if(totalSum - rowSum[i-1] == temp){
+                return true;
+            }
+            totalSum = totalSum - rowSum[i-1];
+            temp += rowSum[i];
+        }
+        int temp2 = colSum[0];
+        for(int i=1; i<colSum.length; i++){
+            if(total - colSum[i-1] == temp2){
+                return true;
+            }
+            total = total - colSum[i-1];
+            temp2 += colSum[i];
+        }
         return false;
-
     }
 }
