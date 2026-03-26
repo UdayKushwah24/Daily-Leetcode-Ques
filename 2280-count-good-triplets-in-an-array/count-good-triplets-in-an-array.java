@@ -19,10 +19,7 @@ class Solution {
         }
         return ans;
     }
-
-    
     static int segmentTree[];
-
     public static void updateSegmentTree(int i, int l, int r, int idx) {
         if (l == r) {
             segmentTree[i] = 1;
