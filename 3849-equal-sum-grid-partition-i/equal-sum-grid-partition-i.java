@@ -3,9 +3,6 @@ class Solution {
        
         int rows = grid.length;
         int cols = grid[0].length;
-        //  if( rows  == 2 && cols == 42951 ){
-        //     return false;
-        // } 
         long[] rowSum = new long[rows];
         long[] colSum = new long[cols];
         long totalSum = 0;
@@ -24,24 +21,38 @@ class Solution {
             }
             colSum[j] = temp;
         }
-        long total = totalSum;
-
-        long temp = rowSum[0];
-        for(int i=1; i<rowSum.length; i++){
-            if(totalSum - rowSum[i-1] == temp){
-                return true;
-            }
-            totalSum = totalSum - rowSum[i-1];
-            temp += rowSum[i];
+        if(totalSum % 2 == 1) return false;
+        long target = totalSum /  2;
+        long csum = 0;
+        for(int i = 0; i < rows; i++) {
+            if(csum == target) return true;
+            csum += rowSum[i];
         }
-        long temp2 = colSum[0];
-        for(int i=1; i<colSum.length; i++){
-            if(total - colSum[i-1] == temp2){
-                return true;
-            }
-            total = total - colSum[i-1];
-            temp2 += colSum[i];
+        csum = 0;
+        for(int i = 0; i < cols; i++) {
+            if(csum == target) return true;
+            csum += colSum[i];
+
         }
         return false;
+        // long total = totalSum;
+
+        // long temp = rowSum[0];
+        // for(int i=1; i<rowSum.length; i++){
+        //     if(totalSum - rowSum[i-1] == temp){
+        //         return true;
+        //     }
+        //     totalSum = totalSum - rowSum[i-1];
+        //     temp += rowSum[i];
+        // }
+        // long temp2 = colSum[0];
+        // for(int i=1; i<colSum.length; i++){
+        //     if(total - colSum[i-1] == temp2){
+        //         return true;
+        //     }
+        //     total = total - colSum[i-1];
+        //     temp2 += colSum[i];
+        // }
+        // return false;
     }
 }
