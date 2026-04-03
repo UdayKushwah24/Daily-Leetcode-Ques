@@ -13,7 +13,7 @@ class Solution {
         
         int n = arr.length;
         for(int i = 0;i < n;i++){
-            for (int j = i+1; j < arr.length; j++) {
+            for (int j = i+1; j < n; j++) {
                 String num_i = ""+arr[i];
                 String num_j = ""+arr[j];
                 String num_i_add_num_j = num_i + num_j;
@@ -26,8 +26,8 @@ class Solution {
             }
         }
         StringBuilder ans = new StringBuilder();
-        for (int k = 0; k < arr.length; k++) {
-            ans.append(arr[k]);
+        for (int ele : arr) {
+            ans.append(ele);
         }
         return ans.toString();
     }
