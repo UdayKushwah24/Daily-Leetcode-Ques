@@ -2,12 +2,12 @@
 -- select score, Dense_rank () Over() as "rank" from 
 -- Scores order by score asc; 
 
--- SELECT score,
---        DENSE_RANK() OVER (ORDER BY score ) AS `rank`
--- FROM Scores;
-
-
-SELECT 
-    score,
-    DENSE_RANK() OVER (ORDER BY score DESC) AS `rank`
+SELECT score,
+       DENSE_RANK() OVER (ORDER BY score desc) AS `rank`
 FROM Scores;
+
+
+-- SELECT 
+--     score,
+--     DENSE_RANK() OVER (ORDER BY score DESC) AS `rank`
+-- FROM Scores;
