@@ -20,28 +20,32 @@ class Solution {
         //     ans = ans.next;
         // }
         // return ans;
+        if (head == null)
+            return head;
+        if (head.next == null)
+            return head;
 
-        ListNode dm = new ListNode(0);
-        dm.next = head;
+        ListNode ans = head.next;
+        ListNode pr = null;
 
-        ListNode pr = dm;
+        while (head != null && head.next != null) {
 
-        while(pr.next != null && pr.next.next != null) {
+            ListNode nx = head.next.next;
+            ListNode sc = head.next;
 
-            ListNode a = pr.next;
-            ListNode b = pr.next.next;
+            sc.next = head;
+            head.next = nx;
 
-            a.next = b.next;
-            b.next = a;
-            pr.next = b;
+            if (pr != null) {
+                pr.next = sc;
+            }
 
-            pr = a;
+            pr = head;
+            head = nx;
         }
 
-        return dm.next;
+        return ans;
     }
-
-    
 
     // public ListNode swapPairs(ListNode head) {
     //     if (head == null)
