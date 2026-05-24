@@ -4,6 +4,7 @@ class Solution {
         int n = nums.length;
 
         // dp[i] stores maximum jumps to reach index i
+        
         int[] dp = new int[n];
 
         // Mark all indices unreachable
