@@ -1,23 +1,22 @@
-class Solution {
-    public int trap(int[] height) {
-          int n =  height.length;
-        int [] left = new int [n];
-        int [] right = new int [n];
-        left[0] =  height[0];
-        for (int i = 1; i < n; i++) {
-            // Prefix max
-            left[i] = Math.max(left[i-1],  height[i]);
+class Solution{
+    public int trap(int[] h){
+        int n=h.length;
+        if(n==0)return 0;
+        int l=0,r=n-1;
+        int lm=0,rm=0;
+        int w=0;
+        while(l<r){
+            if(h[l]<=h[r]){
+                if(h[l]>=lm)lm=h[l];
+                else w+=lm-h[l];
+                l++;
+            }else{
+                if(h[r]>=rm)rm=h[r];
+                else w+=rm-h[r];
+                r--;
+            }
         }
-
-        right[n-1] = height[n-1];
-        for (int i = n-2; i >= 0; i--) {
-            right[i] = Math.max(right[i+1], height[i]);
-        }
-
-        int sum = 0;
-        for (int i = 0; i < right.length; i++) {
-            sum += Math.min(left[i], right[i]) - height[i];
-        }
-        return sum ;
+        return w;
     }
 }
+   
