@@ -1,5 +1,5 @@
 class Solution {
-   
+    
     public int[] pivotArray(int[] nums, int pivot) {
         int[] ans = new int[nums.length];
 		int index = 0;
