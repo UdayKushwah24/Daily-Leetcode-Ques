@@ -5,9 +5,18 @@
 -- on e1.managerid=e2.id and e1.salary>e2.salary;
 
 
+-- with temp as (
+--     select * from Employee
+-- )
+-- select  temp.name as "Employee" from temp
+-- inner join  Employee e on temp.managerId = e.id
+-- where temp.salary > e.salary; 
+
+
+
 with temp as (
     select * from Employee
 )
-select  temp.name as "Employee" from temp
-inner join  Employee e on temp.managerId = e.id
-where temp.salary > e.salary; 
+select   e.name as "Employee" from Employee e
+inner join temp  on temp.id = e.managerId
+where e.salary > temp.salary; 
