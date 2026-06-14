@@ -28,9 +28,6 @@ class Solution {
             temp = temp.next;
             idx++;
         }
-        for(int i = 0; i< len; i++) {
-            System.out.print(arr[i] + " ");
-        }
         int ans = Integer.MIN_VALUE;
         int last = len-1;
         for(int i = 0;i < len/2  ; i++) {
