@@ -17,7 +17,7 @@ SELECT
     -- e.employee_id, 
     t.reports_to as employee_id,
     e.name, 
-    COUNT(t.employee_id) AS reports_count, 
+    COUNT(t.reports_to) AS reports_count, 
     ROUND(AVG(t.age)) AS average_age
 FROM Employees AS e
 INNER JOIN temp AS t 
