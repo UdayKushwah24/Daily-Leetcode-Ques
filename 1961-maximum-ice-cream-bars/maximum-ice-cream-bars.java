@@ -1,4 +1,4 @@
-class Solution {
+/* class Solution {
     public int maxIceCream(int[] costs, int coins) {
         Arrays.sort(costs);
         int ans = 0;
@@ -7,6 +7,20 @@ class Solution {
                 ans++;
                 coins -= costs[i];
             }  
+        }
+        return ans;
+    }
+} */
+
+class Solution {
+    public int maxIceCream(int[] costs, int coins) {
+        Arrays.sort(costs);
+        int ans = 0;
+        int i = 0;
+        while(i < costs.length && coins >= costs[i]) {
+            ans++;
+            coins -= costs[i];
+            i++;
         }
         return ans;
     }
