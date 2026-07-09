@@ -1,30 +1,31 @@
-/* class Solution {
-    static int answer = Integer.MAX_VALUE;
-    public static void Coin(int[] coin,int amount, String ans,int idx, int count) {
-        if(amount == 0) {
-            answer = Math.min(answer,count);
-            // if(answer > count) {
-            //     answer = count;
-            // }
-            System.out.println(ans);
-            return;
-        }
-        for(int i=idx;i <coin.length;i++) {
-            if(amount >= coin[i]) {
-                Coin(coin,amount-coin[i], ans+coin[i],i,count+1);
-            }
-        }
-    }
+// class Solution {
+//     static int answer = Integer.MAX_VALUE;
+//     public static void Coin(int[] coin,int amount, String ans,int idx, int count) {
+//         if(amount == 0) {
+//             answer = Math.min(answer,count);
+//             if(answer > count) {
+//                 answer = count;
+//             }
+//             // System.out.println(ans);
+//             return;
+//         }
+//         for(int i=idx;i <coin.length;i++) {
+//             if(amount >= coin[i]) {
+//                 Coin(coin,amount-coin[i], ans+coin[i],i,count+1);
+//             }
+//         }
+//     }
 
-    public int coinChange(int[] coins, int amount) {
-        Coin(coins,amount,"",0,0);
-        if(answer == Integer.MAX_VALUE) {
-            return -1;
-        } else {
-            return answer;
-        }
-    }
-} */
+//     public int coinChange(int[] coins, int amount) {
+//         Coin(coins,amount,"",0,0);
+//         if(answer == Integer.MAX_VALUE) {
+//             return -1;
+//         } else {
+//             return answer;
+//         }
+//     }
+// } 
+
 
 class Solution {
     
