@@ -28,8 +28,7 @@ class Solution {
         return mergedArr;
     }
 
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-         
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) { 
         double ans = 0.0;
         int[] sortArray = Merge(nums1, nums2);
         int l = sortArray.length/2;
