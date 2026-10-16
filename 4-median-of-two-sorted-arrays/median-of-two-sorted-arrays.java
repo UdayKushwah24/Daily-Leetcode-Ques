@@ -35,6 +35,7 @@ class Solution {
         if(sortArray.length % 2 == 0) {
             ans = (sortArray[l-1]+sortArray[l])/2.0;
         } else {
+            
             ans = sortArray[l];
         }
         return ans;
